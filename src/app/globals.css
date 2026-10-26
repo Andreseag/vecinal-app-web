@@ -1,0 +1,95 @@
+/* ============================================================
+VECINAL APP — Sistema de diseño (Tailwind v4, CSS-first)
+------------------------------------------------------------
+Mismos tokens que la landing. Las fuentes se cargan con
+@fontsource-variable (importadas en layout.tsx), sin pedir
+nada a Google en tiempo de ejecución.
+
+⚙️ Para cambiar colores de TODA la app edita solo @theme.
+============================================================ */
+
+@import "tailwindcss";
+
+@theme {
+  /* Marca */
+  --color-brand: #0b2e2f;
+  --color-brand-deep: #071e1f;
+  --color-teal: #1fa58a;
+  --color-mint: #a6e8d4;
+
+  /* Acción */
+  --color-accent: #0f7a66;
+  --color-accent-strong: #0b5f4f;
+  --color-accent-bright: #3cc9a8;
+
+  /* Neutros */
+  --color-surface: #f2f4f1;
+  --color-line: #dce3e0;
+  --color-ink: #16211f;
+  --color-ink-soft: #566664;
+
+  /* Estados */
+  --color-success: #15803d;
+  --color-warn: #f59e0b;
+  --color-danger: #d92d20;
+
+  /* Tipografía */
+  --font-sans: "Public Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+
+  /* Forma */
+  --radius-control: 0.75rem;
+  --radius-card: 1.25rem;
+
+  /* Elevación */
+  --shadow-card: 0 1px 2px rgb(11 46 47 / 0.05), 0 8px 24px rgb(11 46 47 / 0.06);
+  --shadow-pop: 0 12px 40px rgb(11 46 47 / 0.14);
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-surface text-ink font-sans antialiased;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--color-mint);
+  color: var(--color-brand);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Animación de entrada para contenido que aparece */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-up {
+  animation: fade-up 0.3s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up {
+    animation: none;
+  }
+}
