@@ -15,10 +15,22 @@ interface InputProps extends ComponentProps<"input"> {
  * Input con etiqueta, ayuda y error accesibles (aria-describedby / aria-invalid).
  * Compatible con react-hook-form:  <Input label="Correo" {...register("email")} />
  */
-export function Input({ label, error, hint, endAdornment, className, id, ...props }: InputProps) {
+export function Input({
+  label,
+  error,
+  hint,
+  endAdornment,
+  className,
+  id,
+  ...props
+}: InputProps) {
   const auto = useId();
   const inputId = id ?? auto;
-  const describedBy = error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined;
+  const describedBy = error
+    ? `${inputId}-error`
+    : hint
+      ? `${inputId}-hint`
+      : undefined;
 
   return (
     <div>
@@ -40,10 +52,17 @@ export function Input({ label, error, hint, endAdornment, className, id, ...prop
           )}
           {...props}
         />
-        {endAdornment && <div className="absolute inset-y-0 right-1 flex items-center">{endAdornment}</div>}
+        {endAdornment && (
+          <div className="absolute inset-y-0 right-1 flex items-center">
+            {endAdornment}
+          </div>
+        )}
       </div>
       {error ? (
-        <p id={`${inputId}-error`} role="alert" className="mt-1.5 text-sm text-danger">
+        <p
+          id={`${inputId}-error`}
+          role="alert"
+          className="mt-1.5 text-sm text-danger">
           {error}
         </p>
       ) : hint ? (
@@ -56,21 +75,27 @@ export function Input({ label, error, hint, endAdornment, className, id, ...prop
 }
 
 /** Input de contraseña con botón mostrar/ocultar. */
-export function PasswordInput(props: Omit<ComponentProps<typeof Input>, "type" | "endAdornment">) {
+export function PasswordInput(
+  props: Omit<ComponentProps<typeof Input>, "type" | "endAdornment">,
+) {
   const [visible, setVisible] = useState(false);
   return (
     <Input
       {...props}
       type={visible ? "text" : "password"}
+      placeholder={visible ? "Tu contraseña" : "••••••••"}
       endAdornment={
         <button
           type="button"
           onClick={() => setVisible((v) => !v)}
           aria-label={visible ? "Ocultar contraseña" : "Mostrar contraseña"}
           aria-pressed={visible}
-          className="grid size-10 place-items-center rounded-control text-ink-soft hover:text-brand focus-visible:outline-2 focus-visible:outline-accent"
-        >
-          {visible ? <EyeOff className="size-5" aria-hidden="true" /> : <Eye className="size-5" aria-hidden="true" />}
+          className="grid size-10 place-items-center rounded-control text-ink-soft hover:text-brand focus-visible:outline-2 focus-visible:outline-accent">
+          {visible ? (
+            <EyeOff className="size-5" aria-hidden="true" />
+          ) : (
+            <Eye className="size-5" aria-hidden="true" />
+          )}
         </button>
       }
     />

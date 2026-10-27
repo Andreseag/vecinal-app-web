@@ -2,6 +2,7 @@ import { Building2, ShieldCheck, Sparkles } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Logo, LogoMark } from "@/shared/brand/logo";
+import { CopilotPreview } from "@/modules/auth/presentation/components/copilot-preview";
 
 /**
  * Layout de las pantallas de acceso (iniciar sesión, recuperar contraseña…).
@@ -69,30 +70,8 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
             ))}
           </ul>
 
-          {/* Vista previa del copiloto (decorativa). Se oculta en pantallas bajas. */}
-          <div
-            aria-hidden="true"
-            className="mt-10 max-w-md rounded-card border border-white/10 bg-white/5 p-5 [@media(max-height:780px)]:hidden">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-white/60">
-              <Sparkles className="size-4 text-accent-bright" />
-              Copiloto Vecinal
-            </div>
-            <p className="ml-auto mt-4 w-fit max-w-[90%] rounded-2xl rounded-br-md bg-white/10 px-4 py-2.5 text-sm text-white">
-              ¿A quién debo cobrar primero esta semana?
-            </p>
-            <div className="mt-3 flex items-start gap-3">
-              <span className="grid size-8 shrink-0 place-items-center rounded-full bg-accent-bright text-brand">
-                <Sparkles className="size-4" />
-              </span>
-              <div className="rounded-2xl rounded-tl-md bg-white px-4 py-3 text-sm leading-relaxed text-ink">
-                Encontré <strong>7 unidades</strong> con riesgo de mora y dejé
-                listo un recordatorio para cada una.
-                <span className="mt-3 flex w-fit items-center rounded-control bg-accent px-3 py-1.5 text-xs font-semibold text-white">
-                  Aprobar y enviar (7)
-                </span>
-              </div>
-            </div>
-          </div>
+          {/* Vista previa animada del copiloto (decorativa). Se oculta en pantallas bajas. */}
+          <CopilotPreview />
         </div>
 
         <p className="relative text-sm text-white/50">© {year} Vecinal</p>
